@@ -37,4 +37,8 @@ public class Main {
 
 You can use it to print what data you can get
 
-# ⚠️ Do not attempt to change the package name of Loader.java or the method names in Loader, as this may cause the Java Native Interface to fail. Including when using obfuscation tools like ProGuard, be careful with renaming classes and methods that are referenced by native code.
+---
+## ⚠️ ⚠️⚠️
+## Do not attempt to change the package name of Loader.java or the method names in Loader, as this may cause the Java Native Interface to fail. Including when using obfuscation tools like ProGuard, be careful with renaming classes and methods that are referenced by native code.
+## ⚠️⚠️⚠️
+---
