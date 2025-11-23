@@ -7,10 +7,10 @@ This is a Java Project for developers get Smtc(System Media Transport Controls) 
 - Music Title
 - Music Artist
 - Total Music Time
-- Current Music Position Time
+- Current time position of music
 - Current Music Played Progress
 - Music Cover(Base64)
-- Play State
+- Playing statements
 - isChangedMusic(bool)
 - Source Application Name
 
