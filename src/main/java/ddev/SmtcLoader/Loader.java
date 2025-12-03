@@ -142,6 +142,7 @@ public class Loader {
 
     private void updateTitle(JsonObject json) {
         String newTitle = getStringValue(json, "title");
+        if (newTitle.isEmpty()) newTitle = NO_MEDIA_TEXT;
         titleText = newTitle;
         lastTitle = newTitle;
     }
