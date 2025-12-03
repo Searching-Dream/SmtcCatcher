@@ -25,7 +25,7 @@ public class Loader {
     public static String base64 = "";
     public static String stateText = "";
     public static String sourceApp = "";
-    public static int progress = 0;
+    public static float progress = 0;
     public static boolean changed = false;
 
     public Thread musicInfoThread;
@@ -136,8 +136,8 @@ public class Loader {
 
     private boolean isPlaybackStopped(String state) {
         return state.equalsIgnoreCase("Closed") ||
-               state.equalsIgnoreCase("Opened") ||
-               state.equalsIgnoreCase("Stopped");
+                state.equalsIgnoreCase("Opened") ||
+                state.equalsIgnoreCase("Stopped");
     }
 
     private void updateTitle(JsonObject json) {
@@ -173,16 +173,23 @@ public class Loader {
 
     private void updateProgressAndPassTime(double totalTimeSeconds) {
         passTimeText = formatTime(currentPositionSeconds + 1.0);
-        progress = totalTimeSeconds > 0 ?
-            (int) ((currentPositionSeconds / totalTimeSeconds) * 100) : 0;
+        if (totalTimeSeconds > 0 && currentPositionSeconds >= 0) {
+            progress = (float) (currentPositionSeconds / totalTimeSeconds) * 100.0f;
+        } else {
+            progress = 0.0f;
+        }
     }
 
     private static State mapState(String state) {
         switch (state) {
-            case "Playing": return State.Playing;
-            case "Paused": return State.Paused;
-            case "Stopped": return State.Stopped;
-            default: return State.Unknown;
+            case "Playing":
+                return State.Playing;
+            case "Paused":
+                return State.Paused;
+            case "Stopped":
+                return State.Stopped;
+            default:
+                return State.Unknown;
         }
     }
 
@@ -233,7 +240,7 @@ public class Loader {
             String artist,
             String totalTime,
             String passTime,
-            int progress,
+            float progress,
             String base64,
             State state,
             boolean changed,
