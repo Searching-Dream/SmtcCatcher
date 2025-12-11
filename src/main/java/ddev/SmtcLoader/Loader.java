@@ -36,6 +36,18 @@ public class Loader {
 
     public native String getMediaInfo();
 
+    public native boolean togglePlayPause();
+
+    public native boolean play();
+
+    public native boolean pause();
+
+    public native boolean next();
+
+    public native boolean previous();
+
+    public native boolean stop();
+
     static {
         loadNativeLibrary();
     }
