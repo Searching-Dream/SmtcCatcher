@@ -114,8 +114,18 @@ public class Loader {
 
     private boolean shouldClearMediaInfo(String info) {
         if (info == null || info.equals("{}")) return true;
-        for (String keyword : BLOCKED_KEYWORDS) {
-            if (info.contains(keyword)) return true;
+        try {
+            JsonObject json = JsonParser.parseString(info).getAsJsonObject();
+            String sourceApp = json.has("sourceApp") ? json.get("sourceApp").getAsString() : "";
+
+            for (String keyword : BLOCKED_KEYWORDS) {
+                if (!sourceApp.equalsIgnoreCase("qqmusic") && sourceApp.toLowerCase().contains(keyword)) {
+                    System.out.println("Blocked due to sourceApp: " + sourceApp + " contains " + keyword);
+                    return true;
+                }
+            }
+        } catch (JsonSyntaxException e) {
+            System.err.println("JSON parsing error in shouldClearMediaInfo: " + e.getMessage());
         }
         return false;
     }
