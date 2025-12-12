@@ -119,7 +119,7 @@ public class Loader {
             String sourceApp = json.has("sourceApp") ? json.get("sourceApp").getAsString() : "";
 
             for (String keyword : BLOCKED_KEYWORDS) {
-                if (!sourceApp.equalsIgnoreCase("qqmusic") && sourceApp.toLowerCase().contains(keyword)) {
+                if (!sourceApp.equalsIgnoreCase("qqmusic.exe") && sourceApp.toLowerCase().contains(keyword)) {
                     System.out.println("Blocked due to sourceApp: " + sourceApp + " contains " + keyword);
                     return true;
                 }
